@@ -1,7 +1,7 @@
 import type { IDataObjectInTable } from "../../pages/Dashboard";
 
 interface TableProps {
-  headerDataArr: Array<String>;
+  headerDataArr: Array<string>;
   bodyDataArr: Array<IDataObjectInTable>;
 }
 
@@ -17,8 +17,11 @@ export default function Table({ headerDataArr, bodyDataArr }: TableProps) {
         <table className="w-full border-collapse text-sm overflow-x-scroll">
           <thead className="bg-zinc-800 text-zinc-300">
             <tr>
-              {headerDataArr.map((header) => (
-                <th className="px-4 py-3 text-left font-medium whitespace-nowrap">
+              {headerDataArr.map((header, index) => (
+                <th
+                  key={`${header}-${index}`}
+                  className="px-4 py-3 text-left font-medium whitespace-nowrap"
+                >
                   {header}
                 </th>
               ))}
