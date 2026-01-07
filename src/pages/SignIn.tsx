@@ -1,7 +1,6 @@
 import { useContext, useRef, useState } from "react";
 import { Eye, EyeClosed } from "lucide-react";
-import axios from "axios";
-import { apiBaseUrl } from "../config";
+import { api } from "../config/config";
 import { useNavigate } from "react-router";
 import { AuthContext } from "../components/auth/AuthProvider";
 
@@ -19,14 +18,10 @@ export default function SignIn() {
     const email = emailRef.current?.value;
     const password = passwordRef.current?.value;
 
-    const res = await axios.post(
-      `${apiBaseUrl}/auth/login`,
-      {
-        email,
-        password,
-      },
-      { withCredentials: true }
-    );
+    const res = await api.post(`/auth/login`, {
+      email,
+      password,
+    });
 
     if (res.data.success) {
       // setting auth context

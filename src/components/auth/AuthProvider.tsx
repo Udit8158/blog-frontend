@@ -1,6 +1,5 @@
-import axios from "axios";
 import { createContext, useEffect, useState, type ReactElement } from "react";
-import { apiBaseUrl } from "../../config";
+import { api } from "../../config/config";
 
 type authStatus = "loading" | "authorized" | "unauthorized";
 type user = unknown;
@@ -14,18 +13,13 @@ export const AuthContext = createContext({
 });
 
 export function AuthProvider({ children }: { children: ReactElement }) {
-  console.log("AuthProvider Running");
   const [status, setStatus] = useState<authStatus>("loading");
   const [user, setUser] = useState<user>(null);
 
   const validateUserToken = async () => {
     try {
       setStatus("loading");
-      const res = await axios.get(`${apiBaseUrl}/auth/me`, {
-        withCredentials: true,
-      });
-
-      console.log(res);
+      const res = await api.get(`/auth/me`);
 
       if (res.data.success === true) {
         setStatus("authorized");
@@ -34,6 +28,7 @@ export function AuthProvider({ children }: { children: ReactElement }) {
         setStatus("unauthorized");
       }
     } catch (error) {
+      console.log("catch block in authprovider");
       console.log(error);
       setStatus("unauthorized");
       setUser(null);

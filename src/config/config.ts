@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const envVariables = {
   apiBaseUrl: import.meta.env.VITE_API_BASE_URL,
 };
@@ -17,4 +19,10 @@ checkConfig(envVariables);
 
 const apiBaseUrl = envVariables.apiBaseUrl;
 
-export { apiBaseUrl };
+// base axios configuration
+const api = axios.create({
+  baseURL:apiBaseUrl, 
+  withCredentials: true
+})
+
+export { apiBaseUrl, api };
