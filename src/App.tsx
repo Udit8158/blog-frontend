@@ -3,6 +3,7 @@ import Dashboard from "./pages/Dashboard";
 import NotFoundPage from "./pages/NotFoundPage";
 import SignIn from "./pages/SignIn";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
+import Editor from "./pages/Editor";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           }
         />
         <Route path="/dashboard/signin" element={<SignIn />} />
+        <Route path="/dashboard/editor/:blogId" element={<Editor />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>

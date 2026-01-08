@@ -36,7 +36,7 @@ export default function Table({ headerDataArr, bodyDataArr }: TableProps) {
               >
                 <td className="px-4 py-3 whitespace-nowrap">
                   <a
-                    href={`/dashboard/${blog._id}/editor`}
+                    href={`/dashboard/editor/${blog._id}`}
                     className="text-zinc-100 hover:underline"
                   >
                     {stripTitle(blog.title, 30)}
